@@ -4,10 +4,16 @@ import { Input, Segment, Form, Label } from "semantic-ui-react"
 class SearchBar extends React.Component {
   state = { term: "" }
 
+  onFormSubmit = event => {
+    event.preventDefault()
+
+    console.log(this.state.term)
+  }
+
   render() {
     return (
       <Segment>
-        <Form>
+        <Form onSubmit={this.onFormSubmit}>
           <Form.Field>
             <Label>Image Search</Label>
             <Input
@@ -15,7 +21,6 @@ class SearchBar extends React.Component {
               value={this.state.term}
               onChange={e => this.setState({ term: e.target.value })}
             />
-            {/* If we put () at end of onInputChange it would automatically call every time rendered. By leaving them off (referencing) it allows for it to be called at some point in the future. It is still a callback function. */}
           </Form.Field>
         </Form>
       </Segment>
