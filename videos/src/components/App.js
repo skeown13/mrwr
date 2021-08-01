@@ -5,7 +5,11 @@ import axios from "axios"
 class App extends React.Component {
   state = { videos: [] }
 
-  onSearchSubmit = () => {}
+  onSearchSubmit = () => {
+    axios.get().then(res => {
+      console.log(res)
+    })
+  }
 
   render() {
     return (
