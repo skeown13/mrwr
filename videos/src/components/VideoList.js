@@ -1,24 +1,9 @@
 import React from "react"
 import VideoItem from "./VideoItem"
 
-// const VideoList = ({ videos }) => {
-//   const myVideos = videos.map(video => {
-//     return <VideoItem videoId={video.id.videoId} />
-//   })
-//   const videoThumbnail = videos.map(video => {
-//     return <VideoItem videoThumbnail={video.snippet.thumbnails.medium} />
-//   })
-//   return (
-//     <div>
-//       <div>{myVideos}</div>
-//       <div>{videoThumbnail}</div>
-//     </div>
-//   )
-// }
-
-const VideoList = ({ videos }) => {
+const VideoList = ({ videos, onVideoSelect }) => {
   const myVideos = videos.map(video => {
-    return <VideoItem video={video} />
+    return <VideoItem video={video} onVideoSelect={onVideoSelect} />
   })
 
   return <div>{myVideos}</div>
