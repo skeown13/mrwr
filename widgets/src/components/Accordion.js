@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Accordion, Icon } from "semantic-ui-react";
 
 const AccordionComponent = ({ items }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const onTitleClick = (index) => {
     setActiveIndex(index);
@@ -14,7 +14,6 @@ const AccordionComponent = ({ items }) => {
         <Accordion fluid styled>
           <Accordion.Title
             active={activeIndex === index}
-            index={index}
             onClick={() => onTitleClick(index)}
           >
             <Icon name="dropdown" />
