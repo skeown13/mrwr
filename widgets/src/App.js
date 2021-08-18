@@ -1,5 +1,5 @@
 import React from "react";
-import Accordion from "./components/Accordion";
+import AccordionComponent from "./components/Accordion";
 
 const items = [
   {
@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div>
       <h1>Gonna Make an Accordion</h1>
-      <Accordion items={items} />
+      <AccordionComponent items={items} />
     </div>
   );
 };
