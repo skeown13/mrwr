@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Container, Form } from "semantic-ui-react";
+import { Container, Form, List } from "semantic-ui-react";
 import axios from "axios";
 
 const Search = () => {
   const [term, setTerm] = useState("");
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     const search = async () => {
-      await axios.get("https://en.wikipedia.org/w/api.php", {
+      const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
         params: {
           action: "query",
           list: "search",
@@ -16,9 +17,25 @@ const Search = () => {
           srsearch: term,
         },
       });
+
+      setResults(data.query.search);
     };
-    search();
+
+    if (term) {
+      search();
+    }
   }, [term]);
+
+  const renderedResults = results.map((result) => {
+    return (
+      <div key={result.pageid} className="item">
+        <div className="content">
+          <div className="header">{result.title}</div>
+          {result.snippet}
+        </div>
+      </div>
+    );
+  });
 
   return (
     <Container>
@@ -33,6 +50,7 @@ const Search = () => {
           />
         </Form.Field>
       </Form>
+      <List celled>{renderedResults}</List>
     </Container>
   );
 };
