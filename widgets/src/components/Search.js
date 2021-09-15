@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Form, List } from "semantic-ui-react";
+import { Container, Form, List, Button } from "semantic-ui-react";
 import axios from "axios";
 
 const Search = () => {
@@ -17,6 +17,7 @@ const Search = () => {
           srsearch: term,
         },
       });
+      console.log("the data", data);
 
       setResults(data.query.search);
     };
@@ -29,9 +30,18 @@ const Search = () => {
   const renderedResults = results.map((result) => {
     return (
       <div key={result.pageid} className="item">
+        <div className="right floated content">
+          <a
+            href={`https://en.wikipedia.org?curid=${result.pageid}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Button>Go</Button>
+          </a>
+        </div>
         <div className="content">
           <div className="header">{result.title}</div>
-          {result.snippet}
+          <span dangerouslySetInnerHTML={{ __html: result.snippet }}></span>
         </div>
       </div>
     );
